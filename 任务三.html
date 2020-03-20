@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>雪梨作业三</title>
+        <meta charset="utf-8">
+        <style>
+            fieldset{
+                width: 700px;
+                height: 300px;
+            }
+            #legend{
+				color:red;
+                font-size: 35px;
+                font-weight: bolder;
+            }
+            #skin{
+                width:670px ;
+                height: 70px;
+                margin-top: 30px;
+                margin-left: 15px;
+                padding-left: 4px;
+                border-style: solid;
+                border-width: 1.5px;
+                border-color: #a8a8a8;
+            }
+            #skin li{
+                display: inline-block;
+                list-style-type: none;
+                width: 30px;
+                height: 30px;
+                margin-top: 20px;
+                margin-right: 10px;
+                position: relative;
+            }
+            .skin_0 {
+                background-color: #a8a8a8;
+            }
+            
+            .skin_1 {
+                background-color: blueviolet;
+            }
+            
+            .skin_2 {
+                background-color: plum;
+            }
+            
+            .skin_3 {
+                background-color: lightblue;
+            }
+            
+            .skin_4 {
+                background-color: yellow;
+            }
+            
+            .skin_5 {
+                background-color: lightgreen;
+            } 
+            #div{
+                height: 80px;
+                width: 620px;
+                font-size: 18px;
+                margin-top: 30px;
+                margin-left: 30px;
+                line-height: 35px;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset id="fieldset">
+            <legend id="legend">网页换肤</legend>
+            <ul id="skin">
+                <li class="skin_0" title="灰色"></li>
+                <li class="skin_1" title="紫色"></li>
+                <li class="skin_2" title="粉色"></li>
+                <li class="skin_3" title="浅蓝色"></li>
+                <li class="skin_4" title="黄色"></li>
+                <li class="skin_5" title="浅绿色"></li>
+            </ul>
+            <div id="div">
+                LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。
+            </div>
+        </fieldset>
+        <script>
+            window.onload = function(){
+                var skins = document.getElementsByTagName("li");
+                var div = document.getElementById("div");
+                if(!window.localStorage){
+                    alert("浏览器不支持localstorage");
+                }
+                else{
+                    var storage = window.localStorage;
+                }
+                var getC = storage.getItem("localColor");
+                if (getC) {
+                        div.className = getC;
+                }
+                storage.setItem("distance", 10 + "px");
+                var getD = storage.getItem("distance");
+                if (getD) {
+                    for (var i = 0; i < skins.length; i++) {
+                        if (div.className == skins[i].className) {
+                            skins[i].style.bottom = getD;
+                        }
+                    }
+                } 
+                console.log(div.style.backgroundColor)
+                for (var i = 0; i < skins.length; i++) {
+                    skins[i].onclick = function() {
+                        this.style.bottom = getD;
+                        div.className = this.className;
+                        storage.setItem("localColor", this.className);
+                        for (var j = 0; j < skins.length; j++) {
+                            if (skins[j] != this) {
+                                skins[j].style.bottom = 0 + "px";
+                            }
+                        }
+                    }
+                }
+            }
+            
+        </script>
+    </body>
+</html>
