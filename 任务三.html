@@ -37,7 +37,7 @@
             }
             
             .skin_1 {
-                background-color: blueviolet;
+                background-color: pink;
             }
             
             .skin_2 {
@@ -82,17 +82,17 @@
         </fieldset>
         <script>
             window.onload = function(){
-                var skins = document.getElementsByTagName("li");
+                var lis = document.getElementsByTagName("li");
                 var div = document.getElementById("div");
                 if(!window.localStorage){
                     alert("浏览器不支持localstorage");
                 }
                 else{
                     var storage = window.localStorage;
+                     
                 }
                 //获取本地仓库中localColor的值,没有就不作改变
                 var getC = storage.getItem("localColor");
-                console.log(getC);
                 if(getC) {
                         div.className = getC;
                 }
@@ -103,24 +103,24 @@
                 storage.setItem("distance", 10 + "px");
                 var getD = storage.getItem("distance");
                 if (getD) {
-                    for (var i = 0; i < skins.length; i++) {
-                        if (div.className == skins[i].className) {
-                            skins[i].style.bottom = getD;
+                    for (var i = 0; i < lis.length; i++) {
+                        if (div.className == lis[i].className) {
+                            lis[i].style.bottom = getD;
                         }
                     }
                 }
                 else{
 
                 }
-                for (var i = 0; i < skins.length; i++) {
-                    skins[i].onclick = function() {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].onclick = function() {
                         this.style.bottom = getD;
                         div.className = this.className;
                         //把颜色存储到本地仓库
                         storage.setItem("localColor", this.className);
-                        for (var j = 0; j < skins.length; j++) {
-                            if (skins[j] != this) {
-                                skins[j].style.bottom = 0 + "px";
+                        for (var j = 0; j < lis.length; j++) {
+                            if (lis[j] != this) {
+                                lis[j].style.bottom = 0 + "px";
                             }
                         }
                     }
