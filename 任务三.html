@@ -90,10 +90,16 @@
                 else{
                     var storage = window.localStorage;
                 }
+                //获取本地仓库中localColor的值,没有就不作改变
                 var getC = storage.getItem("localColor");
-                if (getC) {
+                console.log(getC);
+                if(getC) {
                         div.className = getC;
                 }
+                else{
+
+                }
+
                 storage.setItem("distance", 10 + "px");
                 var getD = storage.getItem("distance");
                 if (getD) {
@@ -102,12 +108,15 @@
                             skins[i].style.bottom = getD;
                         }
                     }
-                } 
-                console.log(div.style.backgroundColor)
+                }
+                else{
+
+                }
                 for (var i = 0; i < skins.length; i++) {
                     skins[i].onclick = function() {
                         this.style.bottom = getD;
                         div.className = this.className;
+                        //把颜色存储到本地仓库
                         storage.setItem("localColor", this.className);
                         for (var j = 0; j < skins.length; j++) {
                             if (skins[j] != this) {
