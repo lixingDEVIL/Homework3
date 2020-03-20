@@ -93,14 +93,8 @@
                 }
                 //获取本地仓库中localColor的值,没有就不作改变
                 var getC = storage.getItem("localColor");
-                if(getC) {
-                        div.className = getC;
-                }
-                else{
-
-                }
-
-                storage.setItem("distance", 10 + "px");
+                div.className = getC;
+                storage.distance = 10 + "px";
                 var getD = storage.getItem("distance");
                 if (getD) {
                     for (var i = 0; i < lis.length; i++) {
@@ -108,9 +102,6 @@
                             lis[i].style.bottom = getD;
                         }
                     }
-                }
-                else{
-
                 }
                 for (var i = 0; i < lis.length; i++) {
                     lis[i].onclick = function() {
